@@ -1,4 +1,19 @@
+using IdentityChatEmail.Context;
+using IdentityChatEmail.Entities;
+using IdentityChatEmail.Models;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// DbContext sýnýfýný ekler. Bu, veritabaný ile iletiþim kuran sýnýfý yapýlandýrýr.
+builder.Services.AddDbContext<EmailContext>();
+
+// Identity yapýlandýrmasýný ekler. Kullanýcý kimlik doðrulama ve yetkilendirme iþlemleri için 
+// AppUser sýnýfý ve IdentityRole sýnýfýný kullanarak, veritabaný iþlemlerini EmailContext üzerinden yapar.
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<EmailContext>()
+    .AddErrorDescriber<CustomIdentityValidator>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
