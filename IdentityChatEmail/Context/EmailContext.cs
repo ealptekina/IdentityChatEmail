@@ -10,5 +10,7 @@ namespace IdentityChatEmail.Context
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-IMEIVGC\\SQLEXPRESS;initial Catalog=EmailChat;integrated security=true;trust server certificate=true");
         }
+
+        public DbSet<Message> Messages { get; set; }
     }
 }

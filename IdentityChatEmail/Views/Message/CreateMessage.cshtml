@@ -1,0 +1,35 @@
+﻿@model IdentityChatEmail.Entities.Message
+
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mesaj Oluştur</title>
+</head>
+<body>
+    <h2>Yeni Mesaj Oluştur</h2>
+
+    <form asp-action="CreateMessage" method="post">
+        <label>Gönderici Email</label>
+        <input type="text" asp-for="SenderEmail" class="form-control" />
+        <br />
+        <label>Alıcı Email</label>
+        <input type="text" asp-for="ReceiverEmail" class="form-control" />
+        <br />
+        <label>Konu</label>
+        <input type="text" asp-for="Subject" class="form-control" />
+        <br />
+        <label>Mesaj Detayları</label>
+        <input type="text" asp-for="MessageDetail" class="form-control" />
+        <br />
+        <button class="btn btn-primary">Mesajı Gönder</button>
+        <br />
+    </form>
+</body>
+</html>

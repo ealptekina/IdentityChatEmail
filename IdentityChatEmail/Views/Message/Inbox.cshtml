@@ -1,0 +1,19 @@
+﻿@model List<IdentityChatEmail.Entities.Message>
+
+@{
+    Layout = null;
+}
+
+<h3>Gelen Mesajlar</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <p>
+                @item.SenderEmail - @item.Subject -
+                <!-- Mesaj detayına gitmek için buton -->
+                <a href="/Message/MessageDetail/@item.MessageId" class="btn btn-warning">Mesajı Aç</a>
+            </p>
+        </li>
+    }
+</ul> 
