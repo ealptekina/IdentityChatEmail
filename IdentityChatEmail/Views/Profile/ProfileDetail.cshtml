@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MessageLayout.cshtml";
+}
+
+
+<h2>Profil Detayı</h2>
+
+<div style="margin-top:20px;">
+    <table class="table table-bordered">
+        <tr>
+            <th>Ad</th>
+            <td>@ViewBag.name</td>
+        </tr>
+        <tr>
+            <th>Soyad</th>
+            <td>@ViewBag.surname</td>
+        </tr>
+        <tr>
+            <th>E-posta</th>
+            <td>@ViewBag.email</td>
+        </tr>
+        <tr>
+            <th>Telefon</th>
+            <td>@ViewBag.phone</td>
+        </tr>
+    </table>
+</div>

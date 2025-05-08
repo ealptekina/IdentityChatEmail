@@ -27,7 +27,7 @@ namespace IdentityChatEmail.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.UserName,model.Password,false,true);
             if (result.Succeeded)
             {
-                return RedirectToAction("Inbox", "Message");
+                return RedirectToAction("ProfileDetail", "Profile");
             }
             return View();
         }

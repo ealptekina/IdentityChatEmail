@@ -1,19 +1,22 @@
 ﻿@model List<IdentityChatEmail.Entities.Message>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_MessageLayout.cshtml";
 }
 
-<h3>Gelen Mesajlar</h3>
-<ul>
+<div class="container mt-5">
+    <h3 class="mb-4 text-primary">📥 Gelen Mesajlar</h3>
+
     @foreach (var item in Model)
     {
-        <li>
-            <p>
-                @item.SenderEmail - @item.Subject -
-                <!-- Mesaj detayına gitmek için buton -->
-                <a href="/Message/MessageDetail/@item.MessageId" class="btn btn-warning">Mesajı Aç</a>
-            </p>
-        </li>
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-dark">@item.Subject</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Gönderen: @item.SenderEmail</h6>
+                <a href="/Message/MessageDetail/@item.MessageId" class="btn btn-sm btn-outline-primary mt-2">
+                    Mesajı Aç
+                </a>
+            </div>
+        </div>
     }
-</ul> 
+</div>

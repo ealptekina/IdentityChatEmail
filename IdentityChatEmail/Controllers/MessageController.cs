@@ -37,10 +37,21 @@ namespace IdentityChatEmail.Controllers
             return View(values2);
         }
 
-        public IActionResult SendBox()
+        public async Task<IActionResult> SendBox()
         {
-            return View(); 
+            // Giriş yapan kullanıcı bilgilerini kullanıcı adından (username) al
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            // Kullanıcının e-posta adresini al
+            string emailValue = values.Email;
+
+            // Veritabanından bu kullanıcı tarafından gönderilen mesajları filtrele
+            var sendMessageList = _context.Messages.Where(x => x.SenderEmail == emailValue).ToList();
+
+            // Gönderilen mesaj listesini View'a gönder
+            return View(sendMessageList);
         }
+
 
         [HttpGet]
         public IActionResult CreateMessage()
@@ -49,12 +60,18 @@ namespace IdentityChatEmail.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateMessage(Message message)
+        public async Task<IActionResult> CreateMessage(Message message)
         {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            string senderEmail = values.Email;
+
+            message.SenderEmail = senderEmail;
             message.IsRead = false;
             message.SendDate = DateTime.Now;
+
             _context.Messages.Add(message);
             _context.SaveChanges();
+
             return RedirectToAction("SendBox");
         }
     }
